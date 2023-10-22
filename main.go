@@ -8,8 +8,13 @@ import (
 
 func main() {
 	app := fiber.New(fiber.Config{
-		JSONEncoder: sonic.Marshal,
-		JSONDecoder: sonic.Unmarshal,
+		Prefork:       true,
+		CaseSensitive: true,
+		StrictRouting: true,
+		ServerHeader:  "Fiber",
+		AppName:       "Test App v1.0.1",
+		JSONEncoder:   sonic.Marshal,
+		JSONDecoder:   sonic.Unmarshal,
 	})
 
 	app.Get("/hello", func(c *fiber.Ctx) error {
